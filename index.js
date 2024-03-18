@@ -15,10 +15,10 @@ app.post('/bfhl', (req, res) => {
 
     // Updated error handling for inputArray
     const inputArray = req.body.data || []
-    const evenNumbers = inputArray.filter(num => num % 2 === 0)
-    const oddNumbers = inputArray.filter(num => num % 2 !== 0)
+    const evenNumbers = inputArray.filter(num => !isNaN(num) && num % 2 == 0)
+    const oddNumbers = inputArray.filter(num => !isNaN(num) && num % 2 == 1)
     const alphabetArray = inputArray
-      .filter(char => /[a-zA-Z]/.test(char))
+      .filter(char => /^[a-zA-Z]$/.test(char))
       .map(char => char.toUpperCase())
 
     const response = {
